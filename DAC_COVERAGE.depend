@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1454452449 source:f:\git\sort\dac_coverage2\main.cpp
+	<iostream>
+	<cmath>
+	"Point.h"
+	"Sphere.h"
+	"Space.h"
+
+1454447106 f:\git\sort\dac_coverage2\include\point.h
+
+1454452762 f:\git\sort\dac_coverage2\include\sphere.h
+	"Point.h"
+
+1454452762 f:\git\sort\dac_coverage2\include\space.h
+	"Point.h"
+	"Sphere.h"
+
+1454452108 source:f:\git\sort\dac_coverage2\src\point.cpp
+	"Point.h"
+
+1454452761 source:f:\git\sort\dac_coverage2\src\space.cpp
+	<iostream>
+	<cmath>
+	"Space.h"
+
+1454452780 source:f:\git\sort\dac_coverage2\src\sphere.cpp
+	"Sphere.h"
+	<cmath>
+
+1454458172 source:g:\git\dac_coverage\main.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	<limits>
+	<fstream>
+	"Point.h"
+	"Sphere.h"
+	"Space.h"
+
+1454447106 g:\git\dac_coverage\include\point.h
+
+1454452762 g:\git\dac_coverage\include\sphere.h
+	"Point.h"
+
+1454452762 g:\git\dac_coverage\include\space.h
+	"Point.h"
+	"Sphere.h"
+
+1454452108 source:g:\git\dac_coverage\src\point.cpp
+	"Point.h"
+
+1454452761 source:g:\git\dac_coverage\src\space.cpp
+	<iostream>
+	<cmath>
+	"Space.h"
+
+1454452780 source:g:\git\dac_coverage\src\sphere.cpp
+	"Sphere.h"
+	<cmath>
+
