@@ -1,19 +1,24 @@
 #include <iostream>
 #include <cmath>
 #include "Space.h"
+#include "Sphere.h"
+#include "Detector.h"
+#include "DAC.h"
 
-Space::Space(long size_)
+Space::Space(int size_, double unitcellparameter_, Rotation rot_)
 {
-    volume = 8 * pow(size_ + 1, 3);
-    space = new Point[volume];
-    long index = 0;
-    for(double i = -size_; i <= size_; i += 1.0)
+    rot = rot_;
+    volume = pow(2 * size_ + 1, 3);
+    unitcellparameter = unitcellparameter_;
+    space = new Point*[volume];
+    int index = 0;
+    for(int i = -size_; i <= size_; i++)
     {
-        for(double j = -size_; j <= size_; j += 1.0)
+        for(int j = -size_; j <= size_; j++)
         {
-            for(double k = -size_; k <= size_; k += 1.0)
+            for(int k = -size_; k <= size_; k++)
             {
-                *(space + index++) = Point(i / size_, j / size_, k / size_);
+                *(space + index++) = new Point(i / unitcellparameter_, j / unitcellparameter_, k / unitcellparameter_);
             }
         }
     }
@@ -21,33 +26,60 @@ Space::Space(long size_)
 
 Space::~Space()
 {
+    for(int i = 0; i < volume; i++) (*(space + i))->~Point();
     delete[] space;
 }
 
-Point& Space::getPoint(long index_)
+
+void Space::setRotation(Rotation rot_)
 {
-    return *(space + index_);
+    rot.~Rotation();
+    rot = rot_;
 }
-long Space::getVolume()
+
+void Space::rotateSpace()
+{
+    for(int i = 0; i < volume; i++) rot.RotateForward(getPoint(i));
+}
+
+Point* Space::getPoint(int index_)
+{
+    return (*(space + index_));
+}
+int Space::getVolume()
 {
     return volume;
 }
-long Space::calcChecked()
+int Space::calcChecked()
 {
-    long result = 0;
-    for(long i = 0; i < getVolume(); i++) if(getPoint(i).getCheck()) result++;
+    int result = 0;
+    for(int i = 0; i < volume; i++) if(getPoint(i)->getCheck()) result++;
     return result;
 }
 
 void Space::refreshCheckedPoints()
 {
-    for(long i = 0; i < getVolume(); i++) getPoint(i).setCheck(false);
+    for(int i = 0; i < volume; i++) getPoint(i)->setCheck(false);
 }
 
-void Space::markPoints(Sphere* const sphere_){
-     for(long i = 0; i < getVolume(); i++) if(sphere_->withinShperePositive(getPoint(i))) getPoint(i).setCheck(true);
+void Space::markPoints(DAC* dac_, Sphere* sphere_, Detector* detector_, double precise_)
+{
+    for(int i = 0; i < volume; i++)
+    {
+        if(dac_->inDAC(getPoint(i)))
+        {
+            if(sphere_->onSphere(getPoint(i), precise_))
+            {
+                if(detector_->inDetector(getPoint(i), dac_->getCenter()))
+                {
+                    getPoint(i)->setCheck(true);
+                }
+            }
+        }
+    }
 }
 
-void Space::markPoints(Sphere* const sphere_, Sphere* const resolution_){
-     for(long i = 0; i < getVolume(); i++) if(sphere_->withinShperePositive(getPoint(i), resolution_)) getPoint(i).setCheck(true);
+/*void Space::markPoints(Sphere* const sphere_, Sphere* const resolution_){
+     for(int i = 0; i < getVolume(); i++) if(sphere_->withinSpherePositive(&getPoint(i), resolution_)) getPoint(i).setCheck(true);
 }
+*/

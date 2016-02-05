@@ -1,30 +1,26 @@
-#include "Sphere.h"
+#include <iostream>
 #include <cmath>
+#include "Sphere.h"
+
 
 Sphere::Sphere(Point center_, double R_): center(center_), R(R_)
 {
-    Rxy = sqrt(pow(center_.getX(), 2) + pow(center_.getY(), 2));
+
 }
 Sphere::~Sphere() {}
 
-bool Sphere::withinShperePositive(const Point& point_)
+bool Sphere::withinSphere(Point* point_)
 {
-    double r = pow(point_.getX() - center.getX(), 2) + pow(point_.getY() - center.getY(), 2) + pow(point_.getZ() - center.getZ(), 2);
-    if ((r <= pow(R, 2)) && (point_.getZ() >= 0)) return true;
+    double r = pow(point_->getX() - center.getX(), 2) + pow(point_->getY() - center.getY(), 2) + pow(point_->getZ() - center.getZ(), 2);
+    if ((std::abs(r - pow(R, 2)) <=  0) && (point_->getZ() >= 0)) return true;
     return false;
 }
 
-bool Sphere::withinShperePositive(const Point& point_, Sphere* const resolution_)
+bool Sphere::onSphere(Point* point_, double precise_)
 {
-    if(resolution_->withinShperePositive(point_)){
-    double r = pow(point_.getX() - center.getX(), 2) + pow(point_.getY() - center.getY(), 2) + pow(point_.getZ() - center.getZ(), 2);
-    if ((r <= pow(R, 2)) && (point_.getZ() >= 0)) return true;
-    }
+    double r = pow(point_->getX() - center.getX(), 2) + pow(point_->getY() - center.getY(), 2) + pow(point_->getZ() - center.getZ(), 2);
+    if ((std::abs(r - pow(R, 2)) <  precise_)) return true;
     return false;
 }
 
-void Sphere::moveCenter(double phi_)
-{
-    center.setX(Rxy * cos(phi_));
-    center.setY(Rxy * sin(phi_));
-}
+

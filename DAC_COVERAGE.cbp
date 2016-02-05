@@ -34,11 +34,19 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/DAC.h" />
+		<Unit filename="include/Detector.h" />
+		<Unit filename="include/Matrix.h" />
 		<Unit filename="include/Point.h" />
+		<Unit filename="include/Rotation.h" />
 		<Unit filename="include/Space.h" />
 		<Unit filename="include/Sphere.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/DAC.cpp" />
+		<Unit filename="src/Detector.cpp" />
+		<Unit filename="src/Matrix.cpp" />
 		<Unit filename="src/Point.cpp" />
+		<Unit filename="src/Rotation.cpp" />
 		<Unit filename="src/Space.cpp" />
 		<Unit filename="src/Sphere.cpp" />
 		<Extensions>

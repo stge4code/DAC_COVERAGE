@@ -58,3 +58,76 @@
 	"Sphere.h"
 	<cmath>
 
+1454452108 source:f:\git\dac_coverage\src\point.cpp
+	"Point.h"
+
+1454447106 f:\git\dac_coverage\include\point.h
+
+1454642584 source:f:\git\dac_coverage\src\space.cpp
+	<iostream>
+	<cmath>
+	"Space.h"
+	"Sphere.h"
+	"Detector.h"
+	"DAC.h"
+
+1454642584 f:\git\dac_coverage\include\space.h
+	"Point.h"
+	"Sphere.h"
+	"Rotation.h"
+	"Detector.h"
+	"DAC.h"
+
+1454640125 f:\git\dac_coverage\include\sphere.h
+	"Point.h"
+
+1454643528 source:f:\git\dac_coverage\main.cpp
+	<iostream>
+	<iomanip>
+	<cmath>
+	<limits>
+	<fstream>
+	"Point.h"
+	"Matrix.h"
+	"Rotation.h"
+	"Sphere.h"
+	"Space.h"
+	"DAC.h"
+	"Detector.h"
+
+1454630378 f:\git\dac_coverage\include\matrix.h
+	"Point.h"
+
+1454626670 f:\git\dac_coverage\include\rotation.h
+	"Point.h"
+
+1454636849 f:\git\dac_coverage\include\dac.h
+	"Rotation.h"
+
+1454638572 source:f:\git\dac_coverage\src\dac.cpp
+	<math.h>
+	"Rotation.h"
+	"DAC.h"
+
+1454633221 source:f:\git\dac_coverage\src\matrix.cpp
+	"Point.h"
+	"Matrix.h"
+	<iostream>
+
+1454626670 source:f:\git\dac_coverage\src\rotation.cpp
+	<cmath>
+	"Matrix.h"
+	"Rotation.h"
+
+1454640125 source:f:\git\dac_coverage\src\sphere.cpp
+	<iostream>
+	<cmath>
+	"Sphere.h"
+
+1454635373 source:f:\git\dac_coverage\src\detector.cpp
+	"Point.h"
+	"Detector.h"
+
+1454634905 f:\git\dac_coverage\include\detector.h
+	"Point.h"
+

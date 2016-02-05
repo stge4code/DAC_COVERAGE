@@ -1,24 +1,29 @@
-#include "Point.h"
-#include "Sphere.h"
 #ifndef SPACE_H
 #define SPACE_H
-
+#include "Point.h"
+#include "Sphere.h"
+#include "Rotation.h"
+#include "Detector.h"
+#include "DAC.h"
 
 class Space
 {
 public:
-    Space(long);
+    Space(int, double, Rotation);
     virtual ~Space();
-    Point& getPoint(long);
-    long getVolume();
-    long calcChecked();
+    Point* getPoint(int);
+    int getVolume();
+    int calcChecked();
     void refreshCheckedPoints();
-    void markPoints(Sphere* const);
-    void markPoints(Sphere* const, Sphere* const);
+    void markPoints(DAC*, Sphere*, Detector*, double);
+    void rotateSpace();
+    void setRotation(Rotation rot);
 protected:
 private:
-    Point* space = 0;
-    long volume = 0;
+    Point** space = 0;
+    int volume = 0;
+    double unitcellparameter;
+    Rotation rot;
 
 };
 
