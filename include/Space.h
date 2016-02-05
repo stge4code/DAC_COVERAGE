@@ -15,7 +15,8 @@ public:
     int getVolume();
     int calcChecked();
     void refreshCheckedPoints();
-    void markPoints(DAC*, Sphere*, Detector*, double);
+    void markPoints(DAC*, Detector*, Sphere*, Sphere*, double);
+    void markPoints(Sphere*);
     void rotateSpace();
     void setRotation(Rotation rot);
 protected:

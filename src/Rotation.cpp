@@ -23,10 +23,10 @@ void Rotation::RotateForward(Point* point_){
     Matrix* mz = new Matrix(cos(aZ), -sin(aZ), 0, sin(aZ), cos(aZ), 0, 0, 0, 1);
     Matrix* m = new Matrix(mx, my, mz);
     m->MatrixMPoint(point_);
-    m->~Matrix();
-    mx->~Matrix();
-    my->~Matrix();
-    mz->~Matrix();
+    delete m;
+    delete mx;
+    delete my;
+    delete mz;
 }
 
 void Rotation::RotateBack(Point* point_){
@@ -35,8 +35,8 @@ void Rotation::RotateBack(Point* point_){
     Matrix* mz = new Matrix(cos(-aZ), -sin(-aZ), 0, sin(-aZ), cos(-aZ), 0, 0, 0, 1);
     Matrix* m = new Matrix(mz, my, mx);
     m->MatrixMPoint(point_);
-    m->~Matrix();
-    mx->~Matrix();
-    my->~Matrix();
-    mz->~Matrix();
+    delete m;
+    delete mx;
+    delete my;
+    delete mz;
 }

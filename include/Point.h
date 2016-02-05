@@ -18,9 +18,9 @@ public:
     bool getCheck();
 protected:
 private:
-    double x = 0;
-    double y = 0;
-    double z = 0;
+    double x;
+    double y;
+    double z;
     bool check = false;
 };
 
