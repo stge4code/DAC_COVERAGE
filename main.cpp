@@ -25,22 +25,32 @@ double findCoverage(double lambda, int spacesize, double psi, double resolution,
     space->markPoints(sphere_resolution);
     double SV = space->calcChecked();
     space->refreshCheckedPoints();
+    cout << "\r" << "Resolution: " << std::setprecision(3) << std::fixed << resolution << ", "
+                << "Psi: " << std::setprecision(3) << std::fixed << psi * 180 / M_PI  << "\n";
     for(double aZ = -M_PI; aZ <= M_PI; aZ += anglestep)
+    //double aZ = M_PI;
     {
+        //double aY = -M_PI;
         for(double aY = -M_PI; aY <= M_PI; aY += anglestep)
         {
             for(double aX = -M_PI; aX <= M_PI; aX += anglestep)
+            //double aX = 0.0;
             {
                 dac->setRotation(Rotation(aX, aY, aZ));
                 space->setRotation(Rotation(aX, aY, aZ));
                 space->rotateSpace();
                 space->markPoints(dac, detector, sphere_resolution, sphere_ewald, precise);
+                cout << "\r   Coverage: " << std::setprecision(2) << std::fixed << 100 * space->calcChecked() / SV << "\%" << " ("
+                    << "X: " << std::setprecision(2) << std::setw(5) << aX << ",Y: "
+                    << std::setprecision(2) << std::setw(5) << aY << ",Z: "
+                    << std::setprecision(2) << std::setw(5) << aZ << ")";
             }
-            cout << "\r" << "Resolution: " << std::setprecision(3) << std::fixed << resolution << ", " << "Psi: " << std::setprecision(3) << std::fixed << psi * 180 / M_PI  << ", " << "Coverage: " << std::setprecision(2) << std::fixed << 100 * space->calcChecked() / SV << "\%";
         }
+
     }
-    cout << "\r" << "Resolution: " << std::setprecision(3) << std::fixed << resolution << ", " << "Psi: " << std::setprecision(3) << std::fixed << psi * 180 / M_PI  << ", " << "Coverage: " << std::setprecision(2) << std::fixed << 100 * space->calcChecked() / SV << "\%\n";
     double SC = space->calcChecked();
+    cout << "\r                                                      \r";
+    cout << "\r   Coverage: " << std::setprecision(2) << std::fixed << 100 * SC / SV << "\%\n";
     delete space;
     delete dac;
     delete detector;

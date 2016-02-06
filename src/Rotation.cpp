@@ -12,6 +12,11 @@ Rotation::Rotation(double aX_, double aY_, double aZ_): aX(aX_), aY(aY_), aZ(aZ_
 
 }
 
+Rotation* Rotation::createInvertedRotation(){
+    Rotation* rot = new Rotation(-aX, -aY, -aZ);
+    return rot;
+}
+
 Rotation::~Rotation()
 {
     //dtor

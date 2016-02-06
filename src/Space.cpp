@@ -8,17 +8,17 @@
 Space::Space(int size_, double unitcellparameter_, Rotation rot_)
 {
     rot = rot_;
-    volume = pow(2 * size_ + 1, 3);
+    volume = (2 * size_ + 1) * (2 * size_ + 1) * (2 * size_ + 1);
     unitcellparameter = unitcellparameter_;
     space = new Point*[volume];
-    int index = 0;
-    for(int i = -size_; i <= size_; i++)
+    long index = 0;
+    for(long i = -size_; i <= size_; i++)
     {
-        for(int j = -size_; j <= size_; j++)
+        for(long j = -size_; j <= size_; j++)
         {
-            for(int k = -size_; k <= size_; k++)
+            for(long k = -size_; k <= size_; k++)
             {
-                *(space + index++) = new Point(i / unitcellparameter_, j / unitcellparameter_, k / unitcellparameter_);
+                *(space + index++) = new Point((double) i / unitcellparameter_, (double) j / unitcellparameter_, (double) k / unitcellparameter_);
             }
         }
     }
@@ -27,7 +27,7 @@ Space::Space(int size_, double unitcellparameter_, Rotation rot_)
 Space::~Space()
 {
     rot.~Rotation();
-    for(int i = 0; i < volume; i++) delete *(space + i);
+    for(long i = 0; i < volume; i++) delete *(space + i);
     delete[] space;
 }
 
@@ -40,32 +40,32 @@ void Space::setRotation(Rotation rot_)
 
 void Space::rotateSpace()
 {
-    for(int i = 0; i < volume; i++) rot.RotateForward(getPoint(i));
+    for(long i = 0; i < volume; i++) rot.RotateForward(getPoint(i));
 }
 
-Point* Space::getPoint(int index_)
+Point* Space::getPoint(long index_)
 {
     return (*(space + index_));
 }
-int Space::getVolume()
+long Space::getVolume()
 {
     return volume;
 }
-int Space::calcChecked()
+long Space::calcChecked()
 {
-    int result = 0;
-    for(int i = 0; i < volume; i++) if(getPoint(i)->getCheck()) result++;
+    long result = 0;
+    for(long i = 0; i < volume; i++) if(getPoint(i)->getCheck()) result++;
     return result;
 }
 
 void Space::refreshCheckedPoints()
 {
-    for(int i = 0; i < volume; i++) getPoint(i)->setCheck(false);
+    for(long i = 0; i < volume; i++) getPoint(i)->setCheck(false);
 }
 
 void Space::markPoints(DAC* dac_,  Detector* detector_, Sphere* sphere_resolution_, Sphere* sphere_ewald_, double precise_)
 {
-    for(int i = 0; i < volume; i++)
+    for(long i = 0; i < volume; i++)
     {
         Point* point = getPoint(i);
         if(!point->getCheck())
@@ -88,7 +88,7 @@ void Space::markPoints(DAC* dac_,  Detector* detector_, Sphere* sphere_resolutio
 }
 void Space::markPoints(Sphere* sphere_resolution_)
 {
-    for(int i = 0; i < volume; i++)
+    for(long i = 0; i < volume; i++)
     {
         Point* point = getPoint(i);
 
@@ -103,6 +103,6 @@ void Space::markPoints(Sphere* sphere_resolution_)
 }
 
 /*void Space::markPoints(Sphere* const sphere_, Sphere* const resolution_){
-     for(int i = 0; i < getVolume(); i++) if(sphere_->withinSpherePositive(&getPoint(i), resolution_)) getPoint(i).setCheck(true);
+     for(long i = 0; i < getVolume(); i++) if(sphere_->withinSpherePositive(&getPoint(i), resolution_)) getPoint(i).setCheck(true);
 }
 */

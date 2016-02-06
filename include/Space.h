@@ -11,9 +11,9 @@ class Space
 public:
     Space(int, double, Rotation);
     virtual ~Space();
-    Point* getPoint(int);
-    int getVolume();
-    int calcChecked();
+    Point* getPoint(long);
+    long getVolume();
+    long calcChecked();
     void refreshCheckedPoints();
     void markPoints(DAC*, Detector*, Sphere*, Sphere*, double);
     void markPoints(Sphere*);
@@ -22,7 +22,7 @@ public:
 protected:
 private:
     Point** space = 0;
-    int volume = 0;
+    long volume = 0;
     double unitcellparameter;
     Rotation rot;
 

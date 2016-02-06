@@ -10,6 +10,7 @@ class Rotation
         Rotation(double, double, double);
         void RotateForward(Point*);
         void RotateBack(Point*);
+        Rotation* createInvertedRotation();
     protected:
     private:
         double aX = 0;

@@ -27,6 +27,7 @@ DAC::~DAC()
 
 bool DAC::inDAC(Point* point_)
 {
+    //Rotation* rot_tmp = rot.createInvertedRotation();
     point_->setX(point_->getX() - center.getX());
     point_->setY(point_->getY() - center.getY());
     point_->setZ(point_->getZ() - center.getZ());
@@ -38,6 +39,7 @@ bool DAC::inDAC(Point* point_)
     point_->setX(point_->getX() + center.getX());
     point_->setY(point_->getY() + center.getY());
     point_->setZ(point_->getZ() + center.getZ());
+    //delete rot_tmp;
     if ((pow(y, 2) + pow(z, 2)) <= pow(x * tan(psi), 2)) return true;
     return false;
 }
