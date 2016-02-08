@@ -12,7 +12,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add option="-Wall -g -std=c++0x -pthread" />
 					<Add directory="include" />
 				</Compiler>
 			</Target>
@@ -23,6 +25,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++11" />
 					<Add directory="include" />
 				</Compiler>
 				<Linker>
@@ -31,6 +34,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++11" />
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>

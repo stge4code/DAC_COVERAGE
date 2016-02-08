@@ -68,7 +68,9 @@ void Space::markPoints(DAC* dac_,  Detector* detector_, Sphere* sphere_resolutio
     for(long i = 0; i < volume; i++)
     {
         Point* point = getPoint(i);
+
         if(!point->getCheck())
+            rot.RotateForward(getPoint(i));
         {
             if(sphere_resolution_->withinSphere(point))
             {
@@ -83,7 +85,9 @@ void Space::markPoints(DAC* dac_,  Detector* detector_, Sphere* sphere_resolutio
                     }
                 }
             }
+            rot.RotateBack(point);
         }
+
     }
 }
 void Space::markPoints(Sphere* sphere_resolution_)
