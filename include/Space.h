@@ -10,14 +10,17 @@ class Space
 {
 public:
     Space(int, double, Rotation);
+    Space(int, double, Rotation, Sphere*);
     virtual ~Space();
     Point* getPoint(long);
     long getVolume();
     long calcChecked();
     void refreshCheckedPoints();
     void markPoints(DAC*, Detector*, Sphere*, Sphere*, double);
+    void markPoints(DAC*, Detector*, Sphere*, double);
     void markPoints(Sphere*);
-    void rotateSpace();
+    void rotateSpaceForward();
+    void rotateSpaceBack();
     void setRotation(Rotation rot);
 protected:
 private:

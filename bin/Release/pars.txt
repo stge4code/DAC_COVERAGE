@@ -1,0 +1,10 @@
+lambda 0.71
+psi 4.0
+resolution 0.8
+unitcellparameter 3.0
+precise 1E-3
+anglestep 1.0
+detecterdistance 5.0
+spacesize 10
+threads 10
+step 0.05

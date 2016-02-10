@@ -10,7 +10,7 @@ DAC::DAC()
 
 DAC::DAC(double psi_, Point center_, Rotation rot_): psi(psi_), center(center_), rot(rot_)
 {
-
+    psit = tan(psi_);
 }
 
 Point* DAC::getCenter()
@@ -40,7 +40,7 @@ bool DAC::inDAC(Point* point_)
     point_->setY(point_->getY() + center.getY());
     point_->setZ(point_->getZ() + center.getZ());
     //delete rot_tmp;
-    if ((pow(y, 2) + pow(z, 2)) <= pow(x * tan(psi), 2)) return true;
+    if ((y * y + z * z) <= x * psit * x * psit) return true;
     return false;
 }
 void DAC::setRotation(Rotation rot_)

@@ -14,14 +14,22 @@ Sphere::~Sphere()
 
 bool Sphere::withinSphere(Point* point_)
 {
-    double r = pow(point_->getX() - center.getX(), 2) + pow(point_->getY() - center.getY(), 2) + pow(point_->getZ() - center.getZ(), 2) - R * R;
+    double r =
+    (point_->getX() - center.getX()) * (point_->getX() - center.getX()) +
+    (point_->getY() - center.getY()) * (point_->getY() - center.getY()) +
+    (point_->getZ() - center.getZ()) * (point_->getZ() - center.getZ()) -
+    R * R;
     if (r <= 0) return true;
     return false;
 }
 
 bool Sphere::onSphere(Point* point_, double precise_)
 {
-    double r = pow(point_->getX() - center.getX(), 2) + pow(point_->getY() - center.getY(), 2) + pow(point_->getZ() - center.getZ(), 2) - R * R;
+    double r =
+    (point_->getX() - center.getX()) * (point_->getX() - center.getX()) +
+    (point_->getY() - center.getY()) * (point_->getY() - center.getY()) +
+    (point_->getZ() - center.getZ()) * (point_->getZ() - center.getZ()) -
+    R * R;
     if (r * r <  precise_ * precise_) return true;
     return false;
 }

@@ -34,8 +34,8 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-std=c++11" />
 			<Add option="-Wall" />
+			<Add option="-std=c++11" />
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/DAC.h" />
@@ -46,6 +46,9 @@
 		<Unit filename="include/Space.h" />
 		<Unit filename="include/Sphere.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
 		<Unit filename="src/DAC.cpp" />
 		<Unit filename="src/Detector.cpp" />
 		<Unit filename="src/Matrix.cpp" />

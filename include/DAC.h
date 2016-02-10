@@ -14,6 +14,7 @@ class DAC
     protected:
     private:
         double psi = 0;
+        double psit = 0;
         Rotation rot;
         Point center;
 };

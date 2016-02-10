@@ -9,7 +9,14 @@ Rotation::Rotation()
 
 Rotation::Rotation(double aX_, double aY_, double aZ_): aX(aX_), aY(aY_), aZ(aZ_)
 {
+    aXc = cos(aX_);
+    aXs = sin(aX_);
 
+    aYc = cos(aY_);
+    aYs = sin(aY_);
+
+    aZc = cos(aZ_);
+    aZs = sin(aZ_);
 }
 
 Rotation* Rotation::createInvertedRotation(){
@@ -23,9 +30,9 @@ Rotation::~Rotation()
 }
 
 void Rotation::RotateForward(Point* point_){
-    Matrix* mx = new Matrix(1, 0, 0, 0, cos(aX), -sin(aX), 0, sin(aX), cos(aX));
-    Matrix* my = new Matrix(cos(aY), 0, sin(aY), 0, 1, 0, -sin(aY), 0, cos(aY));
-    Matrix* mz = new Matrix(cos(aZ), -sin(aZ), 0, sin(aZ), cos(aZ), 0, 0, 0, 1);
+    Matrix* mx = new Matrix(1, 0, 0, 0, aXc, -aXs, 0, aXs, aXc);
+    Matrix* my = new Matrix(aYc, 0, aYs, 0, 1, 0, -aYs, 0, aYc);
+    Matrix* mz = new Matrix(aZc, -aZs, 0, aZs, aZc, 0, 0, 0, 1);
     Matrix* m = new Matrix(mx, my, mz);
     m->MatrixMPoint(point_);
     delete m;
@@ -35,9 +42,9 @@ void Rotation::RotateForward(Point* point_){
 }
 
 void Rotation::RotateBack(Point* point_){
-    Matrix* mx = new Matrix(1, 0, 0, 0, cos(-aX), -sin(-aX), 0, sin(-aX), cos(-aX));
-    Matrix* my = new Matrix(cos(-aY), 0, sin(-aY), 0, 1, 0, -sin(-aY), 0, cos(-aY));
-    Matrix* mz = new Matrix(cos(-aZ), -sin(-aZ), 0, sin(-aZ), cos(-aZ), 0, 0, 0, 1);
+    Matrix* mx = new Matrix(1, 0, 0, 0, aXc, aXs, 0, -aXs, aXc);
+    Matrix* my = new Matrix(aYc, 0, -aYs, 0, 1, 0, aYs, 0, aYc);
+    Matrix* mz = new Matrix(aZc, aZs, 0, -aZs, aZc, 0, 0, 0, 1);
     Matrix* m = new Matrix(mz, my, mx);
     m->MatrixMPoint(point_);
     delete m;
